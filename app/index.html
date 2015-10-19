@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CrowdLearn</title>
+    <meta charset="utf-8">
+    <meta name="description" content="CrowdLearn">
+    <meta name="author" content="CrowdLearn">
+    <meta name="keywords" content="CrowdLearn creative space create build learn learning crowdLearnApp">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="release/vendor.min.css">
+    <link rel="stylesheet" href="assets/css/app.css"/>
+<!--
+    <link rel="stylesheet" href="release/app.min.css">
+-->
+    <style>body{background-color: #F5F5F5;}</style>
+  </head>
+  <body ng-app="crowdLearnApp" ng-controller="LayoutController" ng-class="$browser()">
+    <div layout-header></div>
+    <md-content ui-view id="content-view"></md-content>
+    <div layout-footer></div>
+    <footer>
+      <script src="release/vendor.min.js"></script>
+<!--
+      <script src="release/crowdlearn.min.js"></script>
+-->
+      <script src="app.js"></script>
+      <script src="src/home/home.js"></script>
+      <script src="src/contact/form/form.js"></script>
+      <script src="src/contact/form/form-controller.js"></script>
+      <script src="src/contact/form/form-directive.js"></script>
+      <script src="src/contact/contact.js"></script>
+      <script src="src/layout/layout.js"></script>
+      <script src="src/layout/header.js"></script>
+      <script src="src/layout/header-directive.js"></script>
+      <script src="src/layout/header-button-directive.js"></script>
+      <script src="src/layout/footer-directive.js"></script>
+      <script src="src/questions/questions.js"></script>
+    </footer>
+  </body>
+<!--
+  <script async src="release/loader.min.js"></script>
+-->
+</html>
