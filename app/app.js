@@ -1,8 +1,10 @@
 var crowdLearnApp = angular.module('crowdLearnApp', [
-  'ngMaterial',
   'ui.router',
+  'ngMaterial',
+  'ionic',
   'firebase',
   'crowdLearnApp.home',
+  'crowdLearnApp.user',
   'crowdLearnApp.contact',
   'crowdLearnApp.form',
   'crowdLearnApp.questions',
@@ -10,11 +12,16 @@ var crowdLearnApp = angular.module('crowdLearnApp', [
   'layoutModule.header',
 ])
 .constant('ENV', 'dev')
-.constant('FBURL', 'https://creativespace.firebaseio.com/')
+.constant('FBURL', 'https://sccs.firebaseio.com/')
 
-.config(['$urlRouterProvider', '$logProvider', function ($urlRouterProvider, $logProvider) {
+.config(['$urlRouterProvider', '$stateProvider', '$logProvider', function ($urlRouterProvider, $stateProvider, $logProvider) {
   'use strict';
   $logProvider.debugEnabled(true);
+  $stateProvider
+  .state('app', {
+    url: '',
+    templateUrl: "templates/menu.html"
+  });
   $urlRouterProvider.otherwise('/');
 }])
 
@@ -28,7 +35,7 @@ var crowdLearnApp = angular.module('crowdLearnApp', [
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     $log.error('$stateChangeError: ', error, $rootScope.$state);
     if (error === 'AUTH_REQUIRED') {
-      // $state.go('user.login');
+      $state.go('user.login');
     }
   });
   $rootScope.$browser = function(){

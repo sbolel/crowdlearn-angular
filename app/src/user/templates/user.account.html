@@ -1,0 +1,43 @@
+<ion-view view-title="Profile">
+  <ion-content>
+    <div ng-if="userData && userData.provider !== 'anonymous'">
+      <form name="userForm" class="list">
+        <label class="item item-input item-floating-label">
+          <span>First Name</span>
+          <input type="text" ng-model="$root.userData.name.first">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span>Last Name</span>
+          <input type="text" ng-model="$root.userData.name.last">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span>Email</span>
+          <input type="email" ng-model="$root.userData.email">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span>City</span>
+          <input type="text" ng-model="$root.userData.city">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span>State</span>
+          <input type="text" ng-model="$root.userData.state">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span>Postal Code</span>
+          <input type="number" ng-model="$root.userData.zip">
+        </label>
+      </form>
+    </div>
+    <div ng-if="userData && userData.provider === 'anonymous'" class="center">
+      <div class="list">
+        <span>To view your profile,</span>
+        <button ui-sref="user.login" class="button button-full button-dark">Sign in</button>
+        <span>or</span>
+        <button ui-sref="user.signup" class="button button-full button-balanced">Create an Account</button>
+      </div>
+    </div>
+    <div ng-if="!userData" class="center">
+      <ion-spinner icon="ripple"></ion-spinner>
+    </div>
+  </ion-content>
+</ion-view>

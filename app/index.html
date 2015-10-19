@@ -16,9 +16,7 @@
     <style>body{background-color: #F5F5F5;}</style>
   </head>
   <body ng-app="crowdLearnApp" ng-controller="LayoutController" ng-class="$browser()">
-    <div layout-header></div>
-    <md-content ui-view id="content-view"></md-content>
-    <div layout-footer></div>
+    <ion-nav-view></ion-nav-view>
     <footer>
       <script src="release/vendor.min.js"></script>
 <!--
@@ -26,6 +24,10 @@
 -->
       <script src="app.js"></script>
       <script src="src/home/home.js"></script>
+      <script src="src/user/user-module.js"></script>
+      <script src="src/user/user-config.js"></script>
+      <script src="src/user/user-factory.js"></script>
+      <script src="src/user/user-service.js"></script>
       <script src="src/contact/form/form.js"></script>
       <script src="src/contact/form/form-controller.js"></script>
       <script src="src/contact/form/form-directive.js"></script>

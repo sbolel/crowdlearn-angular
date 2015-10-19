@@ -1,0 +1,18 @@
+<ion-view view-title="Sign In">
+  <ion-content ng-init="init()">
+    <form name="loginForm" class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input ng-model="incomingUser.email" type="email" name="email" placeholder="Email" required>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Password</span>
+          <input ng-model="incomingUser.password" type="password" name="password" placeholder="Password" required>
+      </label>
+      <button type="submit" value="Save" ng-click="loginWithPassword()" ng-disabled="!incomingUser.email || !incomingUser.password" class="button button-full button-positive">
+        Submit
+      </button>
+    </form>
+    <small id="alert-message" class="disabled" layout="row" layout-align="center center" layout-margin ng-model="alert"></small>
+  </ion-content>
+</ion-view>

@@ -3,12 +3,16 @@ crowdLearnApp.homeModule = angular.module('crowdLearnApp.home',[]);
 crowdLearnApp.homeModule.config(['$stateProvider', function ($stateProvider) {
   'use strict';
   $stateProvider
-    .state('home', {
+    .state('app.home', {
       url: '/',
       abstract: true,
-      template: '<ui-view/>'
+      views: {
+        'menuContent': {
+          template: '<ui-view/>'
+        }
+      }
     })
-    .state('home.index', {
+    .state('app.home.index', {
       url: '',
       views: {
         '': {

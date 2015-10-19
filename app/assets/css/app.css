@@ -1,13 +1,3 @@
-/* Content */
-
-html, body, ui-view  {
-    margin: 0;
-    height: auto;
-    min-height: 100%;
-}
-
-/* Typography */
-
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -15,108 +5,84 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 h1, h2, h3, h4, h5, h6, p, ul, ol, pre, table, blockquote, input, select, textarea {
   margin-bottom: 24px;
   margin-top: 0;
   padding: 0;
   font-weight: 200;
 }
-
 h1, h2 {
   font-weight: 100;
 }
 h1 {
   font-size: 2.25em;
 }
-
 h1.large {
   font-size: 4em;
   line-height: 80px;
   font-weight: 100;
   margin-bottom: 40px;
 }
-
 h6 {
   font-size: 0.75em;
 }
-
 p.lead {
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
 }
+.center {
+  text-align: center;
+}
+.t-right {
+  text-align: right;
+}
+.light {
+  font-weight: 200;
+}
+.uppercase {
+  text-transform: uppercase;
+}
 
 /* Containers */
-
-#content-view {
-  height: auto;
-  background-color: white; 
-}
-
-#content-view section {
-  margin-top: 60px;
-}
 
 .container {
   max-width: 940px;
   margin: auto;
 }
-
+#content-content {
+  height: auto;
+  background-color: white; 
+}
 .hero-container {
   margin: 0;
   padding: 0;
   text-align: center;
   color: white;
 }
-
-#home-view .hero-container {
+#home-content .hero-container {
   min-height: 600px;
   background-color: #3F51B5;
 }
-
-#about-view .hero-container,
-#funding-view .hero-container,
-#contact-view .hero-container {
-  min-height: 260px;
-  background-color: #212121;
-}
-
-#about-view .hero-container h2 {
-  /*font-weight: 1.75em;*/
-  font-size: 1.75em;
-}
-
-#about-view #team-cards {
-  min-height: 600px;
-}
-
 .hero-container > i.ion-ios-arrow-down {
   color: #B39DDB;
   font-size: 3em;
 }
-
-.connect-fabs {
-  margin-top: 40px;
-}
-
-.connect-fabs > a.md-button > md-icon {
-  font-size: 2em;
-  margin-top: -4px;
-}
-
 .content-container {
   background-color: white;
 }
-
 .content-container > h1 {
   text-align: center;
   margin: auto 40px;
 }
-
 .form-container {
   background-color: #EDE7F6;
   color: black;
+}
+#contact-form {
+  margin: auto;
+  width: 100%;
+  max-width: 640px;
 }
 
 /* Sizing */
@@ -125,77 +91,17 @@ p.lead {
   margin: 0;
   padding: 0;
 }
-
 .fullscreen {
   height: 95vh;
 }
-
-.dark {
-  background-color: #616161;
-}
-
-/* Mods */
-
 .pointer {
   cursor: pointer;
 }
-
-.center {
-  text-align: center;
-}
-
-.t-right {
-  text-align: right;
-}
-
-.light {
-  font-weight: 200;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-md-card.background {
-  background-color: #333;
-  color: white;
-}
-
-.md-input {
-  margin-bottom: 0;
-}
-
-.md-icon-button i {
-  font-size: 1.5em;
-}
-
-.md-button.md-fab.md-accent.md-ink:not([disabled]):hover {
-  background-color: rgb(197, 17, 98);
-}
-
-.toolbar-button {
-  position: relative;
-}
-
-.toolbar-button .button-glyph {
-  padding-bottom: 0.125em;
-}
-
-.toolbar-button .button-scale span {
-  font-size: 0.5em;
-  position: absolute;
-  width: auto;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .img-item {
   height: 160px;
   width: 160px;
   padding-bottom: 20px;
 }
-
 .img-item > img {
   height: 160px;
   width: 160px;
@@ -240,41 +146,7 @@ md-card.background {
 .pl40 {padding-left: 40px;}
 .pl50 {padding-left: 50px;}
 
-
-/* Media Queries */
-/*
-  layout-sm     600px > width           (phones).
-  layout-gt-sm  600px < width           (bigger than phones).
-  layout-md     600px < width < 960px   (tablets in portrait).
-  layout-gt-md  960px < width           (bigger than tablets in portrait).
-  layout-lg     960px < width < 1200px  (tablets in landscape).
-  layout-gt-lg  1200px < width          (computers and large screens).
-*/
-
-#contact-form {
-  margin: auto;
-  width: 100%;
-  max-width: 640px;
-}
-
-#header-container {
-  position: fixed;
-  top: 0;
-  height: 60px;
-  left: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  color: black;
-  z-index: 1000;
-}
-
-layout-header-button .md-button {
-  margin: 0 !important;
-}
-
-layout-header-button > .active {
-  color: #3F51B5 !important;
-}
+/* Material Design Elements */
 
 .nav-speed-dial {
   position: relative;
@@ -292,24 +164,14 @@ layout-header-button > .active {
   font-size: 1.25em;
 }
 
-.footer-column h4 {
-  font-weight: 500 !important;
-  margin-bottom: 12px !important;
+md-card.background {
+  background-color: #333;
+  color: white;
 }
 
-.footer-column a {
-  color: #212121;
-  text-decoration: none;
-  font-variant: small-caps; 
-  margin-top: 0!important;
-  margin-bottom: 0!important;
+.md-input {
+  margin-bottom: 0;
 }
-
-.footer-column div {
-  margin: 4px 0;
-}
-
-/* Material Design Elements */
 
 md-fab-speed-dial {
   height: 46px !important;
@@ -329,4 +191,29 @@ md-fab-speed-dial md-fab-actions .md-fab-action-item layout-header-button {
 
 md-fab-speed-dial md-fab-actions .md-fab-action-item layout-header-button .active {
   color: #5E35B1 !important;
+}
+
+.md-icon-button i {
+  font-size: 1.5em;
+}
+
+.md-button.md-fab.md-accent.md-ink:not([disabled]):hover {
+  background-color: rgb(197, 17, 98);
+}
+
+.toolbar-button {
+  position: relative;
+}
+
+.toolbar-button .button-glyph {
+  padding-bottom: 0.125em;
+}
+
+.toolbar-button .button-scale span {
+  font-size: 0.5em;
+  position: absolute;
+  width: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
