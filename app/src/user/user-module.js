@@ -12,16 +12,20 @@ userModule.run(['$rootScope', 'UserService', function($rootScope, UserService) {
 
 userModule.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('user', {
+    .state('app.user', {
       url: '/u',
       abstract: true,
       controller: 'UserCtrl',
-      templateUrl: "templates/menu.html"
-    })
-    .state('user.account', {
-      url: '',
       views: {
         'menuContent': {
+          template: '<ui-view/>'
+        }
+      },
+    })
+    .state('app.user.account', {
+      url: '',
+      views: {
+        '': {
           templateUrl: 'src/user/templates/user.account.html'
         }
       },
@@ -31,23 +35,23 @@ userModule.config(['$stateProvider', '$urlRouterProvider', function($stateProvid
         }
       }
     })
-    .state('user.signup', {
+    .state('app.user.signup', {
       url: '/signup',
       views: {
-        'menuContent': {
+        '': {
           templateUrl: 'src/user/templates/user.signup.html'
         }
       }
     })
-    .state('user.login', {
+    .state('app.user.login', {
       url: '/login',
       views: {
-        'menuContent': {
+        '': {
           templateUrl: 'src/user/templates/user.login.html'
         }
       }
     })
-    .state('user.logout', {
+    .state('app.user.logout', {
       url: '/logout',
       template: '<ui-view/>',
       controller: function($log, $state, UserService) {

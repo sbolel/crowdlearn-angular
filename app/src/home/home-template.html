@@ -1,14 +1,12 @@
-<ion-content id="home-content">
+<ion-content id="home-content" style="margin-bottom:90px;">
 
-  <div class="hero-container" layout="column" layout-align="center center" layout-fill>
-    <span></span>
-    <h1 class="large">CrowdLearn</h1>
-    <span></span>
-  </div>
-
-  <div class="form-container cover pt20 pb50 pl20 pr20" layout="column" layout-padding layout-align="center center" flex>
-    <h1 class="large mt20 mb0 center">get in touch</h1>
-    <div contact-form style="width:100%"></div>
-  </div>
+  <questions-list></questions-list>  
 
 </ion-content>
+
+<div style="position:fixed;bottom:45px;left:0;right:0;">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search">
+  </label>
+</div>

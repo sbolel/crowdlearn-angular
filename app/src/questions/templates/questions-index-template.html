@@ -1,9 +1,5 @@
-<ion-content id="questions-content">
-  <div layout="column">
-    <div ng-repeat="item in questions">
-      <div>
-        <img ng-src="{{::item.img}}" style="height:600px;width:600px"></img>
-      </div>
-    </div>
-  </div>
-</ion-content>
+<ion-list>
+  <ion-item ng-repeat="item in questions">
+    <span ng-bind="item.content"></span>
+  </ion-item>
+</ion-list>

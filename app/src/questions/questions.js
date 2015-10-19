@@ -1,26 +1,11 @@
 crowdLearnApp.questionsModule = angular.module('crowdLearnApp.questions',[]);
 
-crowdLearnApp.questionsModule.config(['$stateProvider', function ($stateProvider) {
-  'use strict';
-  $stateProvider
-    .state('questions', {
-      url: '/questions',
-      abstract: true,
-      controller: 'QuotesController',
-      template: '<ui-view/>'
-    })
-    .state('questions.index', {
-      url: '',
-      views: {
-        '': {
-          templateUrl: 'src/questions/templates/questions-index-template.html'
-        }
-      }
-    });
-}]);
-
-crowdLearnApp.questionsModule.controller('QuotesController', ['$log', '$scope', 'QuestionsService', function ($log, $scope, QuestionsService){
-
+crowdLearnApp.questionsModule.controller('QuestionsController', ['$log', '$scope', 'QuestionsService', function ($log, $scope, QuestionsService){
+  var questions = QuestionsService.val();
+  questions.$loaded().then(function(dataSnapshot){
+    // $log.debug(dataSnapshot);
+    $scope.questions = dataSnapshot;
+  });
 }]);
 
 crowdLearnApp.questionsModule.service('QuestionsService', ['$log', 'QuestionsList', function ($log, QuestionsList){
@@ -32,27 +17,16 @@ crowdLearnApp.questionsModule.service('QuestionsService', ['$log', 'QuestionsLis
   };
 }]);
 
-crowdLearnApp.questionsModule.factory('QuestionsList', ['$log', '$q', 'FBURL', function ($log, $q, FBURL){
+crowdLearnApp.questionsModule.factory('QuestionsList', ['$log', 'QuestionsListFactory', 'FBURL', function ($log, QuestionsListFactory, FBURL){
   return function(){
-    var deferred = $q.defer();
-    var quotesRef = new Firebase(FBURL+'/questions');
-    var data = {};
-    var dataPromise = quotesRef.once('value', function(dataSnapshot){
-      if(dataSnapshot.exists()){
-        data = dataSnapshot.val();
-        deferred.resolve(data);
-        $log.debug('QuestionsList data set to ', data);
-      } else {
-        deferred.reject();
-      }
-    });
-    return deferred.promise;
+    var firebaseRef = new Firebase(FBURL+'/questions');
+    return QuestionsListFactory(firebaseRef);
   };
 }]);
 
 
-// crowdLearnApp.questionsModule.factory('QuestionsListFactory', ['$log', '$firebaseArray', function ($log, $firebaseArray){
-//   return $firebaseArray.$extend({
+crowdLearnApp.questionsModule.factory('QuestionsListFactory', ['$log', '$firebaseObject', function ($log, $firebaseObject){
+  return $firebaseObject.$extend({
 
-//   });
-// }]);
+  });
+}]);
