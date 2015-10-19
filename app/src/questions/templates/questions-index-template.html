@@ -7,7 +7,6 @@
 <div>
 <ion-list>
   <ion-item ng-repeat="(key, item) in data.tags" ng-click="showQuestion(item, key)">
-    <span ng-bind="size(item.sources)"></span>
     <span ng-bind="item.content"></span>
   </ion-item>
 </ion-list>
