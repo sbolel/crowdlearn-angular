@@ -1,5 +1,13 @@
+<ion-content id="home-content">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="search" placeholder="Search" default="" ng-change="search()" ng-model="data.search">
+  </label>
+<div>
 <ion-list>
-  <ion-item ng-repeat="item in questions">
+  <ion-item ng-repeat="(key, item) in data.tags" ng-click="showQuestion(item, key)">
     <span ng-bind="item.content"></span>
   </ion-item>
 </ion-list>
+</div>
+</ion-content>
