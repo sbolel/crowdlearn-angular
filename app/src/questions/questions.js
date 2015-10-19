@@ -1,18 +1,30 @@
 crowdLearnApp.questionsModule = angular.module('crowdLearnApp.questions',[]);
 
-crowdLearnApp.questionsModule.controller('QuestionsController', ['$log', '$scope', '$ionicModal', 'QuestionsService', 'TagsDataService', function ($log, $scope, $ionicModal, QuestionsService, TagsDataService){
+crowdLearnApp.questionsModule.controller('QuestionsController', ['$log', '$scope', '$ionicModal', 'QuestionsService', 'TagsDataService', 'FBURL', '$firebaseObject', function ($log, $scope, $ionicModal, QuestionsService, TagsDataService, FBURL, $firebaseObject){
   $scope.data={};
   $scope.data.tags = [];
   var questions = QuestionsService.val();
+
+// questions.$bindTo($scope, "questions").then(function() {
+//   console.log($scope.questions); // { foo: "bar" }
+//     $scope.data.tags = $scope.questions;
+// });
+
   questions.$loaded().then(function(dataSnapshot){
-    // $log.debug(dataSnapshot);
+    $log.debug(dataSnapshot);
     $scope.questions = dataSnapshot;
     $scope.data.tags = $scope.questions;
   });
+
   $scope.showQuestion = function(questionItem, key){
     $log.debug(questionItem, key);
+    var qRef = new Firebase(FBURL+"/questions/"+key+'/sources');
+    var qObj = $firebaseObject(qRef);
     $scope.question = questionItem;
     $scope.question.key = key;
+    qObj.$bindTo($scope, "question.sources").then(function(){
+      console.log($scope.question);
+    });
     $scope.openModal();
   };
   $ionicModal.fromTemplateUrl('src/questions/templates/question-modal.html', {
@@ -44,9 +56,13 @@ crowdLearnApp.questionsModule.controller('QuestionsController', ['$log', '$scope
 
     $scope.addSource = function(itemKey){
       $log.debug(itemKey, $scope.question.newSource);
-      questions.addSource(itemKey, $scope.question.newSource);
+      questions.addSource(itemKey, $scope.question.newSource).then(function(){
+        // $scope.$digest();
+      });
     };
-
+    $scope.size= function(sources){
+      return _.size(sources);
+    }
 }]);
 
 crowdLearnApp.questionsModule.service('QuestionsService', ['$log', 'QuestionsList', function ($log, QuestionsList){
@@ -66,19 +82,29 @@ crowdLearnApp.questionsModule.factory('QuestionsList', ['$log', 'QuestionsListFa
 }]);
 
 
-crowdLearnApp.questionsModule.factory('QuestionsListFactory', ['$log', '$firebaseObject', function ($log, $firebaseObject){
+crowdLearnApp.questionsModule.factory('QuestionsListFactory', ['$log', '$firebaseObject', '$q', function ($log, $firebaseObject, $q){
   return $firebaseObject.$extend({
     addSource: function(questionId, source){
+      var deferred = $q.defer();
       $log.debug(this.$ref(),questionId, source);
       if(questionId && source){
         this.$ref().orderByChild('_id').equalTo(questionId).once('value', function(dataSnapshot){
           if(dataSnapshot.exists()){
           dataSnapshot.forEach(function(childSnapshot){
-            childSnapshot.ref().child('sources').push(source);
+            childSnapshot.ref().child('sources').push(source, function(error){
+              if(!error){
+                deferred.resolve();
+              } else {
+                deferred.reject(error);
+              }
+            });
           });
+          } else {
+            deferred.reject(error);
           }
         });
       }
+      return deferred.promise;
     }
   });
 }]);
